@@ -71,6 +71,17 @@ fastify.delete('/lrucache/:cachekey', async (req, res) => {
 });
 
 
+process.on("SIGTERM", gracefulClose);
+
+process.on("SIGINT", gracefulClose);
+
+async function gracefulClose(){
+  console.log("Closing gracefully...")
+  await fastify.close();
+  console.log("All connections gracefully closed.")
+  process.exit(0);
+}
+
 fastify.listen(process.env.PORT || 4001, "0.0.0.0").then(() => {
    console.log(`LRU Server - listening on port: ${process.env.PORT || 4001}`);
 });
