@@ -4,16 +4,15 @@ const bytes = require('bytes');
 
 let lrucache = new LRU({
   max: process.env.LRU_SIZE ? bytes(process.env.LRU_SIZE): bytes('1MB'),
-  dispose: async (key) => {
-  	try {
-  		await fs.promises.unlink(`./cache/${key}`);
-  	} catch (err) {
-  		// do nothing.. mostly the file is already deleted.
-  	}
+  dispose: (key) => {
+  	fs.promises.unlink(`./cache/${key}`).then(() => {
+  		// file successfully deleted.
+  	}).catch((err) => {
+  		// do nothing in case of error.
+  	});
   },
-  length: async (n, key) =>  { 
-  	let stat = await fs.promises.stat(`./cache/${key}`);
-  	return stat.size;
+  length: (n, key) =>  { 
+  	return n;
   },
   noDisposeOnSet: true
 });
@@ -56,7 +55,7 @@ fastify.get('/lrucache/:cachekey', async (req, res) => {
 fastify.put('/lrucache/:cachekey', async (req, res) => {
 	if(req.body) {
 		await fs.promises.writeFile(`./cache/${req.params.cachekey}`, req.body);
-		lrucache.set(req.params.cachekey, true);
+		lrucache.set(req.params.cachekey, req.body.length);
 	}
 	res.status(204).send();
 });
