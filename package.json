@@ -1,0 +1,29 @@
+{
+  "name": "disk-lru-server",
+  "version": "1.0.0",
+  "description": "Disk based key-value LRU storage server for Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gumlet/disk-lru-server.git"
+  },
+  "keywords": [
+    "lru",
+    "disk",
+    "lru",
+    "nodejs"
+  ],
+  "author": "Aditya Patadia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gumlet/disk-lru-server/issues"
+  },
+  "homepage": "https://github.com/gumlet/disk-lru-server#readme",
+  "dependencies": {
+    "fastify": "^3.21.0",
+    "lru-cache": "^6.0.0"
+  }
+}
