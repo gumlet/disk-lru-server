@@ -5,7 +5,7 @@ This works as central key-value LRU storage server. A disk based storage can som
 
 ```bash
 
-npm install disk-lru-server
+docker run gumlet/disk-lru-server
 
 ```
 
