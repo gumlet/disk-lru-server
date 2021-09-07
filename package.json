@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/gumlet/disk-lru-server#readme",
   "dependencies": {
+    "bytes": "^3.1.0",
     "fastify": "^3.21.0",
     "lru-cache": "^6.0.0"
   },

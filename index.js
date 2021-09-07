@@ -1,8 +1,9 @@
 const LRU = require("lru-cache");
 const fs = require("fs");
+const bytes = require('bytes');
 
 let lrucache = new LRU({
-  max: process.env.LRU_SIZE_BYTES ? parseInt(process.env.LRU_SIZE_BYTES): 1_000_000,
+  max: process.env.LRU_SIZE ? bytes(process.env.LRU_SIZE): bytes('1MB'),
   dispose: async (key) => {
   	try {
   		await fs.promises.unlink(`./cache/${key}`);

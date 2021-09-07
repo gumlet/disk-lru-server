@@ -15,6 +15,6 @@ These two environment variables can be set to configure LRU server.
 ```bash
 
 PORT=4001 # port on which the server listens
-LRU_SIZE_BYTES=1000000 # lru cache size in bytes. By default it's set to 1 MB.
+LRU_SIZE='1MB' # lru cache size. By default it's set to 1 MB. You can pass strings like 10MB, 1GB etc.
 
 ```
