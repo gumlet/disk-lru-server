@@ -25,5 +25,8 @@
   "dependencies": {
     "fastify": "^3.21.0",
     "lru-cache": "^6.0.0"
+  },
+  "devDependencies": {
+    "pino-pretty": "^6.0.0"
   }
 }
