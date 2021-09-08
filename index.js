@@ -3,7 +3,7 @@ const fs = require("fs");
 const bytes = require('bytes');
 
 let lrucache = new LRU({
-  max: process.env.LRU_SIZE ? bytes(process.env.LRU_SIZE): bytes('1MB'),
+  max: process.env.LRU_SIZE ? bytes(process.env.LRU_SIZE): bytes('100MB'),
   dispose: (key) => {
   	fs.promises.unlink(`./cache/${key}`).then(() => {
   		// file successfully deleted.
@@ -18,6 +18,7 @@ let lrucache = new LRU({
 });
 
 const fastify = require('fastify')({
+	bodyLimit: 1048576 * 100, // 100 MB
 	keepAliveTimeout: 60000,
 	trustProxy: true,
 	logger: {
